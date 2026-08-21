@@ -1,17 +1,17 @@
 // Mobile nav toggle
 const hamburger = document.getElementById('hamburger');
-const mainNav = document.getElementById('mainNav');
+const sidebar = document.getElementById('sidebar');
 
 hamburger.addEventListener('click', () => {
-  const isOpen = mainNav.classList.toggle('open');
+  const isOpen = sidebar.classList.toggle('mobile-open');
   hamburger.classList.toggle('active', isOpen);
   hamburger.setAttribute('aria-expanded', String(isOpen));
   document.body.style.overflow = isOpen ? 'hidden' : '';
 });
 
-document.querySelectorAll('.nav-link, .nav-login').forEach(link => {
+document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', () => {
-    mainNav.classList.remove('open');
+    sidebar.classList.remove('mobile-open');
     hamburger.classList.remove('active');
     hamburger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
@@ -22,62 +22,30 @@ document.querySelectorAll('.nav-link, .nav-login').forEach(link => {
 const sections = document.querySelectorAll('main section[id]');
 const navLinks = document.querySelectorAll('.nav-link');
 
-const navObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(l => l.classList.remove('active'));
-      const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
-      if (active) active.classList.add('active');
-    }
-  });
-}, { rootMargin: '-45% 0px -45% 0px' });
-
-sections.forEach(s => navObserver.observe(s));
-
-// Scroll reveal (progressive enhancement: elements are visible by default in
-// CSS; only once JS confirms it can observe them do we hide-then-reveal them,
-// with a timeout safety net in case IntersectionObserver never fires).
-const revealEls = document.querySelectorAll('.reveal');
-
 if ('IntersectionObserver' in window) {
-  revealEls.forEach(el => el.classList.add('pre-reveal'));
-
-  const revealObserver = new IntersectionObserver((entries) => {
+  const navObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        entry.target.classList.remove('pre-reveal');
-        revealObserver.unobserve(entry.target);
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
       }
     });
-  }, { threshold: 0.15 });
+  }, { rootMargin: '-45% 0px -45% 0px' });
 
-  revealEls.forEach(el => revealObserver.observe(el));
-
-  // Safety net: force-reveal anything left hidden after 2.5s.
-  setTimeout(() => {
-    document.querySelectorAll('.reveal.pre-reveal:not(.in-view)').forEach(el => {
-      el.classList.add('in-view');
-      el.classList.remove('pre-reveal');
-    });
-  }, 2500);
+  sections.forEach(s => navObserver.observe(s));
 }
 
-// Header background on scroll
-const header = document.getElementById('siteHeader');
-window.addEventListener('scroll', () => {
-  header.style.background = window.scrollY > 40 ? 'rgba(11,11,12,.97)' : 'rgba(11,11,12,.85)';
-}, { passive: true });
-
-// Lightbox
+// Gallery lightbox
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
 const lightboxClose = document.getElementById('lightboxClose');
 
-document.querySelectorAll('.gallery-item').forEach(btn => {
-  btn.addEventListener('click', () => {
-    lightboxImg.src = btn.dataset.full;
-    lightboxImg.alt = btn.querySelector('img').alt;
+document.querySelectorAll('.photo-cell img').forEach(img => {
+  img.parentElement.style.cursor = 'pointer';
+  img.parentElement.addEventListener('click', () => {
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
     lightbox.classList.add('active');
   });
 });
@@ -89,8 +57,3 @@ function closeLightbox() {
 lightboxClose.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
-
-// Page loader
-window.addEventListener('load', () => {
-  document.getElementById('pageLoader').classList.add('loaded');
-});
