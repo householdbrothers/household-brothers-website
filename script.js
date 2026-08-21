@@ -36,6 +36,45 @@ if ('IntersectionObserver' in window) {
   sections.forEach(s => navObserver.observe(s));
 }
 
+// Photo marquee: speed up while the page is scrolling, ease back to the
+// normal pace shortly after scrolling stops. Hover-to-pause is handled in CSS.
+const photoMarquee = document.getElementById('photoMarquee');
+if (photoMarquee) {
+  let scrollStopTimer = null;
+  window.addEventListener('scroll', () => {
+    photoMarquee.classList.add('is-scrolling');
+    clearTimeout(scrollStopTimer);
+    scrollStopTimer = setTimeout(() => {
+      photoMarquee.classList.remove('is-scrolling');
+    }, 350);
+  }, { passive: true });
+}
+
+// Site modals (membership popups)
+document.querySelectorAll('[data-modal-open]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const modal = document.getElementById(btn.getAttribute('data-modal-open'));
+    if (!modal) return;
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+function closeAllModals() {
+  document.querySelectorAll('.site-modal.active').forEach(modal => {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+  });
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.site-modal').forEach(modal => {
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeAllModals(); });
+  modal.querySelectorAll('[data-modal-close]').forEach(btn => btn.addEventListener('click', closeAllModals));
+});
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllModals(); });
+
 // Gallery lightbox
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');

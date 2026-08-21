@@ -8,7 +8,7 @@
 <link rel="icon" href="images/logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -65,21 +65,49 @@
     </div>
   </section>
 
-  <!-- IMAGE GRID / GALLERY (as seen on home) -->
-  <section class="photo-grid">
-    <div class="photo-grid-inner">
-      <div class="photo-cell"><img src="images/gallery/g01.jpg" alt="" loading="lazy"></div>
-      <div class="photo-cell"><img src="images/gallery/g02.jpg" alt="" loading="lazy"></div>
-      <div class="photo-cell"><img src="images/gallery/g03.jpeg" alt="" loading="lazy"></div>
-      <div class="photo-cell"><img src="images/gallery/g04.jpg" alt="" loading="lazy"></div>
-      <div class="photo-cell"><img src="images/gallery/g05.jpg" alt="" loading="lazy"></div>
-      <div class="photo-cell"><img src="images/gallery/g06.jpg" alt="" loading="lazy"></div>
-      <div class="photo-cell"><img src="images/gallery/g07.jpg" alt="" loading="lazy"></div>
-      <div class="photo-cell"><img src="images/gallery/g08.jpg" alt="" loading="lazy"></div>
-      <div class="photo-cell"><img src="images/gallery/g09.jpg" alt="" loading="lazy"></div>
-      <div class="photo-cell"><img src="images/gallery/g10.jpg" alt="" loading="lazy"></div>
-      <div class="photo-cell"><img src="images/gallery/g11.jpg" alt="" loading="lazy"></div>
-      <div class="photo-cell"><img src="images/gallery/g12.jpg" alt="" loading="lazy"></div>
+  <!-- IMAGE MARQUEE (two auto-scrolling rows) -->
+  <section class="photo-grid" id="photoMarquee">
+    <div class="marquee-row">
+      <div class="marquee-track" data-dir="left">
+        <div class="photo-cell"><img src="images/gallery/g01.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell"><img src="images/gallery/g02.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell"><img src="images/gallery/g03.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-cell"><img src="images/gallery/g04.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell"><img src="images/gallery/g05.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell"><img src="images/gallery/g06.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell"><img src="images/gallery/g07.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell"><img src="images/gallery/g08.jpg" alt="" loading="lazy"></div>
+        <!-- duplicate set for seamless loop -->
+        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g01.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g02.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g03.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g04.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g05.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g06.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g07.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g08.jpg" alt="" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="marquee-row">
+      <div class="marquee-track" data-dir="right">
+        <div class="photo-cell"><img src="images/gallery/g09.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell"><img src="images/gallery/g10.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell"><img src="images/gallery/g11.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell"><img src="images/gallery/g12.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell"><img src="images/gallery/g13.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell"><img src="images/gallery/g14.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell"><img src="images/gallery/g15.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell"><img src="images/gallery/g16.jpg" alt="" loading="lazy"></div>
+        <!-- duplicate set for seamless loop -->
+        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g09.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g10.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g11.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g12.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g13.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g14.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g15.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g16.jpg" alt="" loading="lazy"></div>
+      </div>
     </div>
   </section>
 
@@ -164,7 +192,7 @@
     <h2>Access Exclusive<br>Membership Benefits!</h2>
     <div class="benefits-text">
       <p>Join The Household Brothers and gain access to a vibrant community of like-minded individuals. From thrilling events to networking opportunities, we offer a platform for you to thrive. Plus, during &ldquo;special occasions&rdquo;, you can count on us for unwavering support.</p>
-      <a href="#join" class="btn">Learn more...</a>
+      <button type="button" class="btn" data-modal-open="benefitsModal">Learn more...</button>
     </div>
   </section>
 
@@ -173,10 +201,61 @@
     <div class="wireframe-corner wireframe-corner-bottom" aria-hidden="true"></div>
     <h2>Join Us!</h2>
     <p>Join our exclusive men&rsquo;s social club and ignite connections, growth, and camaraderie.</p>
-    <a href="mailto:admin@thehouseholdbrothers.com?subject=Membership%20Enquiry" class="btn">Become a member</a>
+    <button type="button" class="btn" data-modal-open="joinModal">Become a member</button>
   </section>
 
 </main>
+
+<!-- Popup modals (matching the live site's membership popups) -->
+<div class="site-modal" id="benefitsModal" aria-hidden="true">
+  <div class="site-modal-dialog">
+    <div class="site-modal-content">
+      <div class="site-modal-header">
+        <h5>Exclusive Membership Benefits</h5>
+        <button type="button" class="site-modal-close" data-modal-close aria-label="Close">&times;</button>
+      </div>
+      <div class="site-modal-body">
+        <p><strong>Exclusive Supportive Community:</strong></p>
+        <p>Join a vibrant community of Nigerian men based in South Africa. Experience the camaraderie of like-minded individuals who share similar values and aspirations.</p>
+        <p><strong>Personalized Assistance During Life's Milestones:</strong></p>
+        <p>Receive thoughtful support during significant life events. Our club is dedicated to standing by you during moments of joy and sorrow, providing a helping hand when needed.</p>
+        <p><strong>Financial Support in Times of Need:</strong></p>
+        <p>The Household Brothers offer discreet financial support to eligible members, ensuring they have assistance during critical times like welcoming a newborn or coping with the loss of a parent. This support is available within our community guidelines and is subject to good financial standing.</p>
+        <p><strong>Customized Member Benefits:</strong></p>
+        <p>Beyond financial assistance, members enjoy a range of exclusive benefits tailored to foster personal and professional growth. From networking opportunities to curated events and workshops, our club is dedicated to nurturing your overall well-being.</p>
+        <p><strong>Respectful Confidentiality:</strong></p>
+        <p>Rest assured, any support offered by The Household Brothers is handled with utmost discretion and respect for privacy. Your personal matters remain confidential within the club's trusted circle.</p>
+        <p><strong>Diverse Range of Support Services:</strong></p>
+        <p>Our club also offers a variety of other supportive services that cater to the holistic well-being of our members. From mentorship programs to wellness initiatives, we aim to support you in multiple facets of life.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="site-modal" id="joinModal" aria-hidden="true">
+  <div class="site-modal-dialog">
+    <div class="site-modal-content">
+      <div class="site-modal-header">
+        <h5>Join The HOUSEHOLD BROTHERS</h5>
+        <button type="button" class="site-modal-close" data-modal-close aria-label="Close">&times;</button>
+      </div>
+      <div class="site-modal-body">
+        <p><strong>Step 1: Introduction</strong></p>
+        <p>Connect with an existing Johannesburg-based member of The HOUSEHOLD. This current member, known as your sponsor, will introduce you to the group during our regular gatherings.</p>
+        <p><strong>Step 2: Membership Nomination</strong></p>
+        <p>Once introduced, your sponsor will propose your membership to the group. Members will vote on your potential admission into the club. Following the vote, your sponsor will inform you of the decision.</p>
+        <p><strong>Step 3: Proceeding with Membership Application</strong></p>
+        <p>If approved by the group, you will be guided to proceed with the membership application. Provide essential personal details and express your commitment to the club's regulations and values.</p>
+        <p><strong>Step 4: Local Presence</strong></p>
+        <p>Active participation in Johannesburg events, meetings, and engagements is essential. Residing in Johannesburg ensures your full involvement and benefits from our community.</p>
+        <p><strong>Step 5: Membership Approval</strong></p>
+        <p>Upon completing the application and acknowledging the club's guidelines, finalize your membership by paying fees and monthly dues. Full membership is granted upon completion.</p>
+        <p><strong>Take the First Step: Join Our Exclusive Community</strong></p>
+        <p>Should you seek membership, reach out to a current member to introduce you.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">

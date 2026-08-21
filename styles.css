@@ -124,19 +124,53 @@ section{position:relative; padding:70px 60px; overflow:hidden;}
 .hero h1{font-size:40px; line-height:1.05; margin-bottom:22px;}
 .hero-text p{font-size:18px; color:var(--black); max-width:560px;}
 
-/* ---------- Photo grid ---------- */
-.photo-grid{padding:0;}
-.photo-grid-inner{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
+/* ---------- Photo marquee ---------- */
+:root{
+  --marquee-duration:55s;
+  --marquee-duration-fast:14s;
 }
+.photo-grid{padding:0; display:flex; flex-direction:column; gap:14px;}
+
+.marquee-row{overflow:hidden; width:100%;}
+.marquee-track{
+  display:flex;
+  width:max-content;
+  gap:14px;
+  padding:0 7px;
+  animation-duration:var(--marquee-duration);
+  animation-timing-function:linear;
+  animation-iteration-count:infinite;
+  will-change:transform;
+  transition:animation-duration .6s ease;
+}
+.marquee-track[data-dir="left"]{animation-name:marquee-left;}
+.marquee-track[data-dir="right"]{animation-name:marquee-right;}
+
+.photo-grid.is-scrolling .marquee-track{animation-duration:var(--marquee-duration-fast);}
+.marquee-row:hover .marquee-track{animation-play-state:paused;}
+
+@keyframes marquee-left{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+@keyframes marquee-right{
+  from{transform:translateX(-50%);}
+  to{transform:translateX(0);}
+}
+
 .photo-cell{
+  flex:0 0 auto;
+  width:260px;
   aspect-ratio:1/1;
   overflow:hidden;
-  border:1px solid var(--blue);
-  margin:-1px;
+  border:2px solid var(--blue);
+  border-radius:6px;
 }
 .photo-cell img{width:100%; height:100%; object-fit:cover;}
+
+@media (prefers-reduced-motion: reduce){
+  .marquee-track{animation:none;}
+}
 
 /* ---------- About ---------- */
 .about{text-align:center; padding-top:80px;}
@@ -189,6 +223,54 @@ section{position:relative; padding:70px 60px; overflow:hidden;}
 .join h2{font-size:40px; margin-bottom:20px;}
 .join p{color:var(--gray-text); font-size:16px; max-width:500px; margin:0 auto 30px;}
 
+/* ---------- Site modals (membership popups) ---------- */
+.site-modal{
+  display:none;
+  position:fixed; inset:0; z-index:1900;
+  background:rgba(0,0,0,.55);
+  padding:24px;
+  overflow-y:auto;
+}
+.site-modal.active{display:flex; align-items:flex-start; justify-content:center;}
+.site-modal-dialog{width:100%; max-width:640px; margin:40px auto;}
+.site-modal-content{
+  background:var(--white);
+  border-radius:5px;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+.site-modal-header{
+  background:var(--blue);
+  padding:15px 20px;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px;
+}
+.site-modal-header h5{
+  font-family:var(--font-head);
+  font-size:20px;
+  font-weight:600;
+  color:var(--white);
+  margin:0;
+}
+.site-modal-close{
+  background:none; border:none; cursor:pointer;
+  color:var(--white);
+  font-size:24px; line-height:1;
+  flex-shrink:0;
+}
+.site-modal-body{
+  padding:20px;
+  color:var(--black);
+  font-family:'Montserrat', sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  max-height:70vh;
+  overflow-y:auto;
+}
+.site-modal-body p{margin:0 0 14px;}
+.site-modal-body p:last-child{margin-bottom:0;}
+.site-modal-body strong{font-weight:600;}
+
 /* ---------- Lightbox ---------- */
 .lightbox{
   position:fixed; inset:0; z-index:2000;
@@ -220,7 +302,7 @@ section{position:relative; padding:70px 60px; overflow:hidden;}
   section{padding:50px 24px;}
   .hero{padding-top:50px;}
   .hero h1{font-size:32px;}
-  .photo-grid-inner{grid-template-columns:repeat(2, 1fr);}
+  .photo-cell{width:200px;}
   .pillars{grid-template-columns:1fr; gap:40px;}
   .team-grid{grid-template-columns:repeat(2, 1fr);}
   .benefits{grid-template-columns:1fr; text-align:left;}
@@ -229,7 +311,7 @@ section{position:relative; padding:70px 60px; overflow:hidden;}
 
 @media (max-width: 560px){
   .team-grid{grid-template-columns:1fr 1fr; gap:18px;}
-  .photo-grid-inner{grid-template-columns:repeat(2, 1fr);}
+  .photo-cell{width:150px;}
   .about h2, .join h2{font-size:30px;}
   .benefits h2{font-size:28px;}
   section{padding:40px 18px;}
