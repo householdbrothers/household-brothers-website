@@ -50,8 +50,13 @@ if ('IntersectionObserver' in window) {
 // which made the browser recalculate the position and leap ~400px.)
 // ---------------------------------------------------------------------------
 const gallery = document.getElementById('gallery');
+// The strip shows small thumbnails; the lightbox loads the full-size photo
+// from each cell's data-full only when it is opened.
 const galleryPhotos = gallery
-  ? [...gallery.querySelectorAll('.photo-cell img')].map(img => ({ src: img.getAttribute('src'), alt: img.alt }))
+  ? [...gallery.querySelectorAll('.photo-cell')].map(cell => {
+      const img = cell.querySelector('img');
+      return { full: cell.dataset.full || img.getAttribute('src'), alt: img.alt };
+    })
   : [];
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -266,10 +271,20 @@ function showPhoto(index) {
   if (!galleryPhotos.length) return;
   lightboxIndex = (index + galleryPhotos.length) % galleryPhotos.length;
   const photo = galleryPhotos[lightboxIndex];
-  lightboxImg.src = photo.src;
+  lightboxImg.classList.add('is-loading');
+  lightboxImg.src = photo.full;
+  if (lightboxImg.complete && lightboxImg.naturalWidth) lightboxImg.classList.remove('is-loading');
   lightboxImg.alt = photo.alt || `Gallery photo ${lightboxIndex + 1} of ${galleryPhotos.length}`;
   lightboxCount.textContent = `${lightboxIndex + 1} / ${galleryPhotos.length}`;
+
+  // Fetch the neighbours in the background so next/previous feel instant.
+  [1, -1].forEach(step => {
+    const n = galleryPhotos[(lightboxIndex + step + galleryPhotos.length) % galleryPhotos.length];
+    new Image().src = n.full;
+  });
 }
+lightboxImg.addEventListener('load', () => lightboxImg.classList.remove('is-loading'));
+lightboxImg.addEventListener('error', () => lightboxImg.classList.remove('is-loading'));
 
 function openLightbox(index) {
   lightboxReturnFocus = document.activeElement;
@@ -293,8 +308,8 @@ if (gallery) {
   gallery.addEventListener('click', e => {
     const cell = e.target.closest('.photo-cell');
     if (!cell) return;
-    const src = cell.querySelector('img').getAttribute('src');
-    const index = galleryPhotos.findIndex(p => p.src === src);
+    const full = cell.dataset.full || cell.querySelector('img').getAttribute('src');
+    const index = galleryPhotos.findIndex(p => p.full === full);
     openLightbox(index < 0 ? 0 : index);
   });
 }

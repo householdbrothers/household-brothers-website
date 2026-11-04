@@ -8,14 +8,15 @@
 <link rel="icon" href="images/logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/Recoleta-Bold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <!-- Mobile top bar -->
 <header class="mobile-bar">
-  <a href="#home" class="mobile-brand"><img src="images/logo.png" alt="The Household Brothers"></a>
+  <a href="#home" class="mobile-brand"><img src="images/logo.png" alt="The Household Brothers" width="400" height="455"></a>
   <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="sidebar">
     <span></span><span></span><span></span>
   </button>
@@ -24,7 +25,7 @@
 <!-- Sidebar nav -->
 <aside class="sidebar" id="sidebar">
   <a href="#home" class="sidebar-logo">
-    <img src="images/logo.png" alt="The Household Brothers — Est. 2022">
+    <img src="images/logo.png" alt="The Household Brothers — Est. 2022" width="400" height="455">
   </a>
 
   <nav class="sidebar-nav">
@@ -66,31 +67,44 @@
   </section>
 
   <!-- GALLERY: two auto-scrolling photo rows.
-       To add a photo, add one line to either row. script.js makes the
-       copies needed for the seamless loop, so list each photo only once. -->
+       Each photo has a small square thumbnail (images/gallery/thumbs/*.webp,
+       shown in the strip) and a full-size version (data-full, only loaded
+       when the photo is opened). List each photo once; script.js makes the
+       copies needed for the seamless loop. See README for how to add one. -->
   <section class="photo-grid" id="gallery" aria-label="Photo gallery">
     <div class="marquee-row">
       <div class="marquee-track" data-dir="left">
-        <div class="photo-cell"><img src="images/gallery/g01.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
-        <div class="photo-cell"><img src="images/gallery/g02.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
-        <div class="photo-cell"><img src="images/gallery/g03.jpeg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
-        <div class="photo-cell"><img src="images/gallery/g04.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
-        <div class="photo-cell"><img src="images/gallery/g05.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
-        <div class="photo-cell"><img src="images/gallery/g06.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
-        <div class="photo-cell"><img src="images/gallery/g07.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
-        <div class="photo-cell"><img src="images/gallery/g08.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
+        <div class="photo-cell" data-full="images/gallery/g17.jpg"><img src="images/gallery/thumbs/g17.webp" srcset="images/gallery/thumbs/g17-320.webp 320w, images/gallery/thumbs/g17.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="eager" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g21.jpg"><img src="images/gallery/thumbs/g21.webp" srcset="images/gallery/thumbs/g21-320.webp 320w, images/gallery/thumbs/g21.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="eager" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g19.jpg"><img src="images/gallery/thumbs/g19.webp" srcset="images/gallery/thumbs/g19-320.webp 320w, images/gallery/thumbs/g19.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="eager" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g25.jpg"><img src="images/gallery/thumbs/g25.webp" srcset="images/gallery/thumbs/g25-320.webp 320w, images/gallery/thumbs/g25.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g23.jpg"><img src="images/gallery/thumbs/g23.webp" srcset="images/gallery/thumbs/g23-320.webp 320w, images/gallery/thumbs/g23.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g27.jpg"><img src="images/gallery/thumbs/g27.webp" srcset="images/gallery/thumbs/g27-320.webp 320w, images/gallery/thumbs/g27.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g01.jpg"><img src="images/gallery/thumbs/g01.webp" srcset="images/gallery/thumbs/g01-320.webp 320w, images/gallery/thumbs/g01.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g02.jpg"><img src="images/gallery/thumbs/g02.webp" srcset="images/gallery/thumbs/g02-320.webp 320w, images/gallery/thumbs/g02.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g03.jpeg"><img src="images/gallery/thumbs/g03.webp" srcset="images/gallery/thumbs/g03-320.webp 320w, images/gallery/thumbs/g03.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g04.jpg"><img src="images/gallery/thumbs/g04.webp" srcset="images/gallery/thumbs/g04-320.webp 320w, images/gallery/thumbs/g04.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g05.jpg"><img src="images/gallery/thumbs/g05.webp" srcset="images/gallery/thumbs/g05-320.webp 320w, images/gallery/thumbs/g05.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g06.jpg"><img src="images/gallery/thumbs/g06.webp" srcset="images/gallery/thumbs/g06-320.webp 320w, images/gallery/thumbs/g06.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g07.jpg"><img src="images/gallery/thumbs/g07.webp" srcset="images/gallery/thumbs/g07-320.webp 320w, images/gallery/thumbs/g07.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g08.jpg"><img src="images/gallery/thumbs/g08.webp" srcset="images/gallery/thumbs/g08-320.webp 320w, images/gallery/thumbs/g08.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
       </div>
     </div>
     <div class="marquee-row">
       <div class="marquee-track" data-dir="right">
-        <div class="photo-cell"><img src="images/gallery/g09.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
-        <div class="photo-cell"><img src="images/gallery/g10.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
-        <div class="photo-cell"><img src="images/gallery/g11.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
-        <div class="photo-cell"><img src="images/gallery/g12.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
-        <div class="photo-cell"><img src="images/gallery/g13.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
-        <div class="photo-cell"><img src="images/gallery/g14.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
-        <div class="photo-cell"><img src="images/gallery/g15.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
-        <div class="photo-cell"><img src="images/gallery/g16.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
+        <div class="photo-cell" data-full="images/gallery/g18.jpg"><img src="images/gallery/thumbs/g18.webp" srcset="images/gallery/thumbs/g18-320.webp 320w, images/gallery/thumbs/g18.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="eager" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g22.jpg"><img src="images/gallery/thumbs/g22.webp" srcset="images/gallery/thumbs/g22-320.webp 320w, images/gallery/thumbs/g22.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="eager" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g20.jpg"><img src="images/gallery/thumbs/g20.webp" srcset="images/gallery/thumbs/g20-320.webp 320w, images/gallery/thumbs/g20.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="eager" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g26.jpg"><img src="images/gallery/thumbs/g26.webp" srcset="images/gallery/thumbs/g26-320.webp 320w, images/gallery/thumbs/g26.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g24.jpg"><img src="images/gallery/thumbs/g24.webp" srcset="images/gallery/thumbs/g24-320.webp 320w, images/gallery/thumbs/g24.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g09.jpg"><img src="images/gallery/thumbs/g09.webp" srcset="images/gallery/thumbs/g09-320.webp 320w, images/gallery/thumbs/g09.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g10.jpg"><img src="images/gallery/thumbs/g10.webp" srcset="images/gallery/thumbs/g10-320.webp 320w, images/gallery/thumbs/g10.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g11.jpg"><img src="images/gallery/thumbs/g11.webp" srcset="images/gallery/thumbs/g11-320.webp 320w, images/gallery/thumbs/g11.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g12.jpg"><img src="images/gallery/thumbs/g12.webp" srcset="images/gallery/thumbs/g12-320.webp 320w, images/gallery/thumbs/g12.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g13.jpg"><img src="images/gallery/thumbs/g13.webp" srcset="images/gallery/thumbs/g13-320.webp 320w, images/gallery/thumbs/g13.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g14.jpg"><img src="images/gallery/thumbs/g14.webp" srcset="images/gallery/thumbs/g14-320.webp 320w, images/gallery/thumbs/g14.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g15.jpg"><img src="images/gallery/thumbs/g15.webp" srcset="images/gallery/thumbs/g15-320.webp 320w, images/gallery/thumbs/g15.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
+        <div class="photo-cell" data-full="images/gallery/g16.jpg"><img src="images/gallery/thumbs/g16.webp" srcset="images/gallery/thumbs/g16-320.webp 320w, images/gallery/thumbs/g16.webp 520w" sizes="(max-width: 560px) 150px, (max-width: 992px) 200px, 260px" alt="" loading="lazy" decoding="async" width="520" height="520"></div>
       </div>
     </div>
   </section>
@@ -127,35 +141,35 @@
 
     <div class="team-grid">
       <div class="team-card">
-        <div class="team-photo"><img src="images/team/richard-adeyemi.jpg" alt="Richard Adeyemi" loading="lazy"></div>
+        <div class="team-photo"><img src="images/team/richard-adeyemi.jpg" alt="Richard Adeyemi" loading="lazy" decoding="async" width="800" height="800"></div>
         <div class="team-info">
           <h3>Richard<br>Adeyemi</h3>
           <p>President</p>
         </div>
       </div>
       <div class="team-card">
-        <div class="team-photo"><img src="images/team/michael-ijeoma.jpg" alt="Michael Amaka Ijeoma" loading="lazy"></div>
+        <div class="team-photo"><img src="images/team/michael-ijeoma.jpg" alt="Michael Amaka Ijeoma" loading="lazy" decoding="async" width="800" height="800"></div>
         <div class="team-info">
           <h3>Michael Amaka<br>Ijeoma</h3>
           <p>General Secretary</p>
         </div>
       </div>
       <div class="team-card">
-        <div class="team-photo"><img src="images/team/john-afolabi.jpg" alt="John Afolabi" loading="lazy"></div>
+        <div class="team-photo"><img src="images/team/john-afolabi.jpg" alt="John Afolabi" loading="lazy" decoding="async" width="800" height="800"></div>
         <div class="team-info">
           <h3>John<br>Afolabi</h3>
           <p>Financial Secretary</p>
         </div>
       </div>
       <div class="team-card">
-        <div class="team-photo"><img src="images/team/olushola-daniels.jpg" alt="Oluwashola Daniels" loading="lazy"></div>
+        <div class="team-photo"><img src="images/team/olushola-daniels.jpg" alt="Oluwashola Daniels" loading="lazy" decoding="async" width="800" height="800"></div>
         <div class="team-info">
           <h3>Oluwashola<br>Daniels</h3>
           <p>Welfare Secretary</p>
         </div>
       </div>
       <div class="team-card">
-        <div class="team-photo"><img src="images/team/bukola-ojewale.jpg" alt="Buki Ojewale" loading="lazy"></div>
+        <div class="team-photo"><img src="images/team/bukola-ojewale.jpg" alt="Buki Ojewale" loading="lazy" decoding="async" width="800" height="800"></div>
         <div class="team-info">
           <h3>Buki<br>Ojewale</h3>
           <p>Provost</p>
