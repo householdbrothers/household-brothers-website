@@ -65,48 +65,32 @@
     </div>
   </section>
 
-  <!-- IMAGE MARQUEE (two auto-scrolling rows) -->
-  <section class="photo-grid" id="photoMarquee">
+  <!-- GALLERY: two auto-scrolling photo rows.
+       To add a photo, add one line to either row. script.js makes the
+       copies needed for the seamless loop, so list each photo only once. -->
+  <section class="photo-grid" id="gallery" aria-label="Photo gallery">
     <div class="marquee-row">
       <div class="marquee-track" data-dir="left">
-        <div class="photo-cell"><img src="images/gallery/g01.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell"><img src="images/gallery/g02.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell"><img src="images/gallery/g03.jpeg" alt="" loading="lazy"></div>
-        <div class="photo-cell"><img src="images/gallery/g04.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell"><img src="images/gallery/g05.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell"><img src="images/gallery/g06.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell"><img src="images/gallery/g07.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell"><img src="images/gallery/g08.jpg" alt="" loading="lazy"></div>
-        <!-- duplicate set for seamless loop -->
-        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g01.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g02.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g03.jpeg" alt="" loading="lazy"></div>
-        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g04.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g05.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g06.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g07.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g08.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell"><img src="images/gallery/g01.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
+        <div class="photo-cell"><img src="images/gallery/g02.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
+        <div class="photo-cell"><img src="images/gallery/g03.jpeg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
+        <div class="photo-cell"><img src="images/gallery/g04.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
+        <div class="photo-cell"><img src="images/gallery/g05.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
+        <div class="photo-cell"><img src="images/gallery/g06.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
+        <div class="photo-cell"><img src="images/gallery/g07.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
+        <div class="photo-cell"><img src="images/gallery/g08.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
       </div>
     </div>
     <div class="marquee-row">
       <div class="marquee-track" data-dir="right">
-        <div class="photo-cell"><img src="images/gallery/g09.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell"><img src="images/gallery/g10.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell"><img src="images/gallery/g11.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell"><img src="images/gallery/g12.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell"><img src="images/gallery/g13.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell"><img src="images/gallery/g14.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell"><img src="images/gallery/g15.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell"><img src="images/gallery/g16.jpg" alt="" loading="lazy"></div>
-        <!-- duplicate set for seamless loop -->
-        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g09.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g10.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g11.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g12.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g13.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g14.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g15.jpg" alt="" loading="lazy"></div>
-        <div class="photo-cell" aria-hidden="true"><img src="images/gallery/g16.jpg" alt="" loading="lazy"></div>
+        <div class="photo-cell"><img src="images/gallery/g09.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
+        <div class="photo-cell"><img src="images/gallery/g10.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
+        <div class="photo-cell"><img src="images/gallery/g11.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
+        <div class="photo-cell"><img src="images/gallery/g12.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
+        <div class="photo-cell"><img src="images/gallery/g13.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
+        <div class="photo-cell"><img src="images/gallery/g14.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
+        <div class="photo-cell"><img src="images/gallery/g15.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
+        <div class="photo-cell"><img src="images/gallery/g16.jpg" alt="" loading="lazy" decoding="async" width="1080" height="1080"></div>
       </div>
     </div>
   </section>
@@ -150,28 +134,28 @@
         </div>
       </div>
       <div class="team-card">
-        <div class="team-photo"><img src="images/team/michael-ijeoma.png" alt="Michael Amaka Ijeoma" loading="lazy"></div>
+        <div class="team-photo"><img src="images/team/michael-ijeoma.jpg" alt="Michael Amaka Ijeoma" loading="lazy"></div>
         <div class="team-info">
           <h3>Michael Amaka<br>Ijeoma</h3>
           <p>General Secretary</p>
         </div>
       </div>
       <div class="team-card">
-        <div class="team-photo"><img src="images/team/john-afolabi.png" alt="John Afolabi" loading="lazy"></div>
+        <div class="team-photo"><img src="images/team/john-afolabi.jpg" alt="John Afolabi" loading="lazy"></div>
         <div class="team-info">
           <h3>John<br>Afolabi</h3>
           <p>Financial Secretary</p>
         </div>
       </div>
       <div class="team-card">
-        <div class="team-photo"><img src="images/team/olushola-daniels.png" alt="Oluwashola Daniels" loading="lazy"></div>
+        <div class="team-photo"><img src="images/team/olushola-daniels.jpg" alt="Oluwashola Daniels" loading="lazy"></div>
         <div class="team-info">
           <h3>Oluwashola<br>Daniels</h3>
           <p>Welfare Secretary</p>
         </div>
       </div>
       <div class="team-card">
-        <div class="team-photo"><img src="images/team/bukola-ojewale.png" alt="Buki Ojewale" loading="lazy"></div>
+        <div class="team-photo"><img src="images/team/bukola-ojewale.jpg" alt="Buki Ojewale" loading="lazy"></div>
         <div class="team-info">
           <h3>Buki<br>Ojewale</h3>
           <p>Provost</p>
@@ -251,9 +235,12 @@
 </div>
 
 <!-- Lightbox -->
-<div class="lightbox" id="lightbox">
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
   <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous photo">&#8249;</button>
   <img src="" alt="" id="lightboxImg">
+  <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next photo">&#8250;</button>
+  <p class="lightbox-count" id="lightboxCount" aria-live="polite"></p>
 </div>
 
 <script src="script.js"></script>

@@ -19,7 +19,7 @@
 }
 
 *,*::before,*::after{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth; scrollbar-gutter:stable;}  /* stops the page shifting sideways when a popup locks scrolling */
 body{
   margin:0;
   font-family:var(--font-body);
@@ -124,39 +124,36 @@ section{position:relative; padding:70px 60px; overflow:hidden;}
 .hero h1{font-size:40px; line-height:1.05; margin-bottom:22px;}
 .hero-text p{font-size:18px; color:var(--black); max-width:560px;}
 
-/* ---------- Photo marquee ---------- */
-:root{
-  --marquee-duration:55s;
-  --marquee-duration-fast:14s;
-}
+/* ---------- Photo gallery (marquee) ----------
+   Motion is driven by script.js (requestAnimationFrame), so speed changes
+   ease smoothly instead of restarting a CSS animation. Without JS, or with
+   reduced motion turned on, each row is a plain swipeable strip. */
 .photo-grid{padding:0; display:flex; flex-direction:column; gap:14px;}
 
-.marquee-row{overflow:hidden; width:100%;}
+.marquee-row{
+  width:100%;
+  overflow-x:auto;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+.marquee-row::-webkit-scrollbar{display:none;}
 .marquee-track{
   display:flex;
   width:max-content;
   gap:14px;
   padding:0 7px;
-  animation-duration:var(--marquee-duration);
-  animation-timing-function:linear;
-  animation-iteration-count:infinite;
-  will-change:transform;
-  transition:animation-duration .6s ease;
 }
-.marquee-track[data-dir="left"]{animation-name:marquee-left;}
-.marquee-track[data-dir="right"]{animation-name:marquee-right;}
 
-.photo-grid.is-scrolling .marquee-track{animation-duration:var(--marquee-duration-fast);}
-.marquee-row:hover .marquee-track{animation-play-state:paused;}
-
-@keyframes marquee-left{
-  from{transform:translateX(0);}
-  to{transform:translateX(-50%);}
+.photo-grid.marquee-on .marquee-row{
+  overflow:hidden;
+  touch-action:pan-y;       /* vertical swipes scroll the page, horizontal ones drag the strip */
+  cursor:grab;
+  user-select:none;
+  -webkit-user-select:none;
 }
-@keyframes marquee-right{
-  from{transform:translateX(-50%);}
-  to{transform:translateX(0);}
-}
+.photo-grid.marquee-on .marquee-row.is-dragging,
+.photo-grid.marquee-on .marquee-row.is-dragging .photo-cell{cursor:grabbing;}
+.photo-grid.marquee-on .marquee-track{will-change:transform; backface-visibility:hidden;}
 
 .photo-cell{
   flex:0 0 auto;
@@ -165,11 +162,13 @@ section{position:relative; padding:70px 60px; overflow:hidden;}
   overflow:hidden;
   border:2px solid var(--blue);
   border-radius:6px;
+  background:#111;
+  cursor:zoom-in;
 }
-.photo-cell img{width:100%; height:100%; object-fit:cover;}
-
-@media (prefers-reduced-motion: reduce){
-  .marquee-track{animation:none;}
+.photo-cell img{
+  width:100%; height:100%; object-fit:cover;
+  -webkit-user-drag:none;
+  pointer-events:none;
 }
 
 /* ---------- About ---------- */
@@ -277,13 +276,30 @@ section{position:relative; padding:70px 60px; overflow:hidden;}
   background:rgba(0,0,0,.92);
   display:none; align-items:center; justify-content:center;
   padding:30px;
+  touch-action:pinch-zoom;   /* lets one-finger swipes change photo */
 }
 .lightbox.active{display:flex;}
-.lightbox img{max-width:92vw; max-height:88vh; object-fit:contain;}
+.lightbox img{max-width:84vw; max-height:84vh; object-fit:contain; user-select:none; -webkit-user-drag:none;}
 .lightbox-close{
   position:absolute; top:24px; right:28px;
   background:none; border:none; color:var(--white);
   font-size:2.2rem; line-height:1; cursor:pointer;
+}
+.lightbox-nav{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:48px; height:64px;
+  background:rgba(255,255,255,.08); border:none; border-radius:4px;
+  color:var(--white); font-size:2.6rem; line-height:1; cursor:pointer;
+  transition:background .2s ease;
+}
+.lightbox-nav:hover{background:rgba(255,255,255,.18);}
+.lightbox-prev{left:20px;}
+.lightbox-next{right:20px;}
+.lightbox button:focus{outline:none;}
+.lightbox button:focus-visible{outline:2px solid var(--cyan); outline-offset:2px;}
+.lightbox-count{
+  position:absolute; bottom:18px; left:0; right:0; margin:0;
+  text-align:center; color:rgba(255,255,255,.7); font-size:14px;
 }
 
 /* ================= Responsive ================= */
@@ -291,6 +307,7 @@ section{position:relative; padding:70px 60px; overflow:hidden;}
   .sidebar{display:none;}
   .mobile-bar{display:flex;}
   .content{margin-left:0; padding-top:70px;}
+  section[id]{scroll-margin-top:70px;}   /* menu links land below the fixed top bar */
 
   .sidebar.mobile-open{
     display:flex;
@@ -315,4 +332,8 @@ section{position:relative; padding:70px 60px; overflow:hidden;}
   .about h2, .join h2{font-size:30px;}
   .benefits h2{font-size:28px;}
   section{padding:40px 18px;}
+  .lightbox{padding:12px;}
+  .lightbox img{max-width:100%; max-height:78vh;}
+  .lightbox-nav{top:auto; bottom:12px; transform:none; width:44px; height:44px; font-size:2rem;}
+  .lightbox-count{bottom:24px;}
 }
